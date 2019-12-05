@@ -12,7 +12,6 @@ $patrimoinesFluviaux=json_decode($data, true);
 $nbPatrimoine=0;
 foreach ($patrimoinesFluviaux as $patrimoineFluvial){
     $nbPatrimoine++;}
-echo $nbPatrimoine;
 $triPatrimoine=array();
 $tabPatrimoine=array();
 for ($compt = 0; $compt < $nbPatrimoine; $compt++) {
