@@ -9,13 +9,8 @@
 $url="patrimoineFluvial.json";
 $data=file_get_contents($url);
 $patrimoinesFluviaux=json_decode($data, true);
-echo $patrimoinesFluviaux[0]['fields']['commune'].'<br>';//Affiche la commune à l'indice 0
-echo $patrimoinesFluviaux[0]['fields']['identifian'].'<br>';//Affiche l' id à l'indice 0
-echo $patrimoinesFluviaux[0]['fields']['elem_patri'].'<br>';//Affiche le nom du patrimoine à l'indice 0
-echo $patrimoinesFluviaux[0]['fields']['elem_princ'].'<br>';//Affiche la description à l'indice 0
 $nbPatrimoine=0;
 foreach ($patrimoinesFluviaux as $patrimoineFluvial){
-    //echo $patrimoineFluvial['fields']['commune'] .'<br>';
     $nbPatrimoine++;}
 echo $nbPatrimoine;
 $triPatrimoine=array();
