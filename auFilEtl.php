@@ -31,7 +31,6 @@ for ($compt = 0; $compt < $nbPatrimoine; $compt++) {
     ];
     $tabPatrimoine[$compt][]=$triPatrimoine;
 }
-var_dump($tabPatrimoine);
 $jsonpart = fopen('patrimoinesFluviauxETL.json', 'w+');
 fwrite($jsonpart, json_encode($tabPatrimoine, JSON_UNESCAPED_UNICODE |
     JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
