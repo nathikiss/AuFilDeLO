@@ -16,7 +16,7 @@ $triPatrimoine=array();
 $tabPatrimoine=array();
 for ($compt = 0; $compt < $nbPatrimoine; $compt++) {
     if ($patrimoinesFluviaux[$compt]['fields']['elem_princ'] == null){
-        $elemPrinc="Aucune Description ";
+        $elemPrinc= null;
     }
     else{
         $elemPrinc=$patrimoinesFluviaux[$compt]['fields']['elem_princ'];
