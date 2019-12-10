@@ -15,7 +15,7 @@ foreach ($patrimoinesFluviaux as $patrimoineFluvial){
 $triPatrimoine=array();
 $tabPatrimoine=array();
 for ($compt = 0; $compt < $nbPatrimoine; $compt++) {
-    if ($patrimoinesFluviaux[$compt]['fields']['elem_princ'] == null){
+    if (empty($patrimoinesFluviaux[$compt]['fields']['elem_princ'])){
         $elemPrinc= null;
     }
     else{
