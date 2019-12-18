@@ -36,6 +36,7 @@ fwrite($jsonpart, json_encode($tabPatrimoine, JSON_UNESCAPED_UNICODE |
 fclose($jsonpart);
 try {
     $pdo = new PDO( 'mysql:host=localhost;port=3306;dbname=aufildelo','root','sio');
+    echo "Connexion réussie";
 }
 catch( PDOException $e ) {
     echo "Erreur SQL :", $e->getMessage();
