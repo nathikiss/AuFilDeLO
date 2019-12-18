@@ -34,15 +34,20 @@ $jsonpart = fopen('patrimoinesFluviauxETL.json', 'w+');
 fwrite($jsonpart, json_encode($tabPatrimoine, JSON_UNESCAPED_UNICODE |
     JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
 fclose($jsonpart);
-$connect = mysqli_connect("localhost", "root", "sio", "aufildelo");
-$sql = "CREATE TABLE patrimoinefluvial(
+try {
+    $pdo = new PDO( 'mysql:host=localhost;port=3306;dbname=aufildelo','root','sio');
+}
+catch( PDOException $e ) {
+    echo "Erreur SQL :", $e->getMessage();
+}
+$sql = $pdo->prepare( "CREATE TABLE patrimoinefluvial(
             id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             commune VARCHAR(30) NOT NULL,
             departement INT(2) NOT NULL,
             nom_patrimoine VARCHAR(150),
             description VARCHAR(500)
-            )";
-mysqli_query($connect, $sql);
+            )");
+$sql->execute();
 
 $jsonFile = file_get_contents("patrimoinesFluviauxETL.json");
 $array = json_decode($jsonFile, true);
@@ -50,10 +55,11 @@ foreach ($array as $secondArray)
 {
     foreach ($secondArray as $row)
     {
-        $requete = "INSERT INTO patrimoinefluvial(commune, departement, nom_patrimoine, description)
+        $requete =$pdo->prepare( "INSERT INTO patrimoinefluvial(commune, departement, nom_patrimoine, description)
                   VALUES ('" . $row["commune"] . "','" . $row["departement"] . "',
-                    '" . $row["nom_patrimoine"] . "','" . $row["description"] . "')";
-        mysqli_query($connect, $requete);
+                    '" . $row["nom_patrimoine"] . "','" . $row["description"] . "')");
+        $requete->execute();
     }
 }
+
 ?>
